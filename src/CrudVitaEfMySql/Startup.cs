@@ -21,12 +21,14 @@ namespace CrudVitaEfMySql
         {
             services.AddControllersWithViews();
 
-            var host = Configuration["DBHOST"] ?? "127.0.0.1";
+            var host = Configuration["DBHOST"] ?? "dbinitial.cct9tnl2lcsw.us-east-1.rds.amazonaws.com";
             var port = Configuration["DBPORT"] ?? "3306";
-            var password = Configuration["DBPASSWORD"] ?? "admin";
+            var password = Configuration["DBPASSWORD"] ?? "adminMaster";
 
             services.AddDbContext<AppDbContext>(options => options.UseMySql($"server={host};userid=root;pwd={password};"
                     + $"port={port};database=CiaTecnicaDev"));
+
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
