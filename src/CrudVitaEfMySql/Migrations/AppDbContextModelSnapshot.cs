@@ -14,7 +14,7 @@ namespace CrudVitaEfMySql.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.14")
+                .HasAnnotation("ProductVersion", "3.1.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("CrudProjectVita.Models.PessoaFisica", b =>
@@ -79,14 +79,14 @@ namespace CrudVitaEfMySql.Migrations
                     b.Property<string>("Cnpj")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int>("CompanyName")
-                        .HasColumnType("int");
+                    b.Property<string>("CompanyName")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Complemento")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int>("FantansyName")
-                        .HasColumnType("int");
+                    b.Property<string>("FantansyName")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Logradouro")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");

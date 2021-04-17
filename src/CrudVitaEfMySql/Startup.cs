@@ -21,12 +21,12 @@ namespace CrudVitaEfMySql
         {
             services.AddControllersWithViews();
 
-            var host = Configuration["DBHOST"] ?? "dbinitial.cct9tnl2lcsw.us-east-1.rds.amazonaws.com";
-            var port = Configuration["DBPORT"] ?? "3306";
-            var password = Configuration["DBPASSWORD"] ?? "adminMaster";
+            //var host = Configuration["DBHOST"] ?? "dbinitial.cct9tnl2lcsw.us-east-1.rds.amazonaws.com";
+            //var port = Configuration["DBPORT"] ?? "3306";
+            //var password = Configuration["DBPASSWORD"] ?? "adminMaster";
+            var conn = Configuration["ConnectionStrings:MySqlConnectionString"];
 
-            services.AddDbContext<AppDbContext>(options => options.UseMySql($"server={host};userid=root;pwd={password};"
-                    + $"port={port};database=CiaTecnicaDev"));
+            services.AddDbContext<AppDbContext>(options => options.UseMySql(conn));
 
             services.AddMvc();
         }
