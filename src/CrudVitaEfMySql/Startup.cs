@@ -1,3 +1,5 @@
+using CrudVitaEfMySql.Abstrations;
+using CrudVitaEfMySql.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +18,6 @@ namespace CrudVitaEfMySql
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
@@ -24,11 +25,11 @@ namespace CrudVitaEfMySql
 
             services.AddDbContext<AppDbContext>(options => options.UseMySql(conn));
             services.AddScoped<IPessoaFisica, PessoaFisicaService>();
+            services.AddScoped<IPessoaJuridica, PessoaJuridicaService>();
 
             services.AddMvc();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

@@ -1,31 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using CrudProjectVita.Models;
+using CrudVitaEfMySql.Abstrations;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using CrudProjectVita.Models;
-using CrudVitaEfMySql;
+using System.Threading.Tasks;
 
 namespace CrudVitaEfMySql.Controllers
 {
     public class PessoaJuridicasController : Controller
     {
-        private readonly AppDbContext _context;
-
-        public PessoaJuridicasController(AppDbContext context)
+        private readonly IPessoaJuridica _service;
+        public PessoaJuridicasController(IPessoaJuridica service)
         {
-            _context = context;
+            _service = service;
         }
 
-        // GET: PessoaJuridicas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.PessoaJuridicas.ToListAsync());
+            return View(await _service.List());
         }
 
-        // GET: PessoaJuridicas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,8 +25,8 @@ namespace CrudVitaEfMySql.Controllers
                 return NotFound();
             }
 
-            var pessoaJuridica = await _context.PessoaJuridicas
-                .FirstOrDefaultAsync(m => m.PessoaJuridicaId == id);
+            var pessoaJuridica = await _service.FindPessoaJuridica(id);
+
             if (pessoaJuridica == null)
             {
                 return NotFound();
@@ -43,29 +35,23 @@ namespace CrudVitaEfMySql.Controllers
             return View(pessoaJuridica);
         }
 
-        // GET: PessoaJuridicas/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: PessoaJuridicas/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("PessoaJuridicaId,Cnpj,CompanyName,FantansyName,CEP,Logradouro,Numero,Complemento,Bairro,Cidade,Uf")] PessoaJuridica pessoaJuridica)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(pessoaJuridica);
-                await _context.SaveChangesAsync();
+                await _service.Include(pessoaJuridica);
                 return RedirectToAction(nameof(Index));
             }
             return View(pessoaJuridica);
         }
 
-        // GET: PessoaJuridicas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,7 +59,7 @@ namespace CrudVitaEfMySql.Controllers
                 return NotFound();
             }
 
-            var pessoaJuridica = await _context.PessoaJuridicas.FindAsync(id);
+            var pessoaJuridica = await _service.FindPessoaJuridica(id);
             if (pessoaJuridica == null)
             {
                 return NotFound();
@@ -81,9 +67,6 @@ namespace CrudVitaEfMySql.Controllers
             return View(pessoaJuridica);
         }
 
-        // POST: PessoaJuridicas/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("PessoaJuridicaId,Cnpj,CompanyName,FantansyName,CEP,Logradouro,Numero,Complemento,Bairro,Cidade,Uf")] PessoaJuridica pessoaJuridica)
@@ -95,22 +78,14 @@ namespace CrudVitaEfMySql.Controllers
 
             if (ModelState.IsValid)
             {
-                try
+
+                var result = await _service.Edit(id, pessoaJuridica);
+
+                if (result.Result != ResultEnum.Success)
                 {
-                    _context.Update(pessoaJuridica);
-                    await _context.SaveChangesAsync();
+                    return BadRequest();
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!PessoaJuridicaExists(pessoaJuridica.PessoaJuridicaId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+
                 return RedirectToAction(nameof(Index));
             }
             return View(pessoaJuridica);
@@ -124,8 +99,8 @@ namespace CrudVitaEfMySql.Controllers
                 return NotFound();
             }
 
-            var pessoaJuridica = await _context.PessoaJuridicas
-                .FirstOrDefaultAsync(m => m.PessoaJuridicaId == id);
+            var pessoaJuridica = await _service.FindPessoaJuridica(id);
+
             if (pessoaJuridica == null)
             {
                 return NotFound();
@@ -134,20 +109,12 @@ namespace CrudVitaEfMySql.Controllers
             return View(pessoaJuridica);
         }
 
-        // POST: PessoaJuridicas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var pessoaJuridica = await _context.PessoaJuridicas.FindAsync(id);
-            _context.PessoaJuridicas.Remove(pessoaJuridica);
-            await _context.SaveChangesAsync();
+            await _service.Delete(id);
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool PessoaJuridicaExists(int id)
-        {
-            return _context.PessoaJuridicas.Any(e => e.PessoaJuridicaId == id);
         }
     }
 }

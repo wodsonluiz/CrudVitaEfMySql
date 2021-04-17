@@ -1,11 +1,13 @@
-using System.Threading.Tasks;
 using CrudProjectVita.Models;
+using CrudVitaEfMySql;
+using System.Collections;
+using System.Threading.Tasks;
 
 public interface IPessoaFisica
 {
-     Task<bool> Include(PessoaFisica pessoa);
-     Task<bool> Delete(int id);
-     Task<bool> List();
-     Task<bool> Edit(int id, PessoaFisica pessoa);
-     
+    Task<ResponseOperation> Include(PessoaFisica pessoa);
+    Task<ResponseOperation> Delete(int id);
+    Task<IEnumerable> List();
+    Task<ResponseOperation> Edit(int id, PessoaFisica pessoa);
+    Task<PessoaFisica> FindPessoaFisica(int? id);
 }
