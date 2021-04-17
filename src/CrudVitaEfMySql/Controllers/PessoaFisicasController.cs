@@ -9,10 +9,12 @@ namespace CrudVitaEfMySql.Controllers
     public class PessoaFisicasController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly IPessoaFisica _service;
 
-        public PessoaFisicasController(AppDbContext context)
+        public PessoaFisicasController(AppDbContext context, IPessoaFisica service)
         {
             _context = context;
+            _service = service;
         }
 
         // GET: PessoaFisicas
@@ -135,9 +137,7 @@ namespace CrudVitaEfMySql.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var pessoaFisica = await _context.PessoaFisicas.FindAsync(id);
-            _context.PessoaFisicas.Remove(pessoaFisica);
-            await _context.SaveChangesAsync();
+            var result = await _service.Delete(id);
             return RedirectToAction(nameof(Index));
         }
 
