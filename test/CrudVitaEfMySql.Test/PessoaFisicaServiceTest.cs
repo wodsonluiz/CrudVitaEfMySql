@@ -19,7 +19,7 @@ namespace CrudVitaEfMySql.Test
                 Nome = "Usuario UnitTest",
                 SobreNome = "Usuario UniTest",
                 CEP = "12345-678",
-                Logradouro = "Rua do João da Silva",
+                Logradouro = "Rua do Joï¿½o da Silva",
                 Complemento = "Complemento UnitTest",
                 Bairro = "Bairro UnitTest",
                 Cidade = "Cidade UnitTest",
@@ -49,14 +49,6 @@ namespace CrudVitaEfMySql.Test
             _pessoa.Nome = null;
             var response = _service.Include(_pessoa);
             Assert.IsTrue(response.Result.Result == ResultEnum.Fail ? true : false);
-        }
-
-        [Test]
-        public void TestIncludeComplementoEmpty()
-        {
-            _pessoa.Complemento = null;
-            var response = _service.Include(_pessoa);
-            Assert.IsTrue(response.Result.Result == ResultEnum.Success ? true : false);
         }
     }
 }
