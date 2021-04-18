@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrudVitaEfMySql", "src\Crud
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{226A2388-32C5-4DAC-BD3A-90598F4CE71C}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrudVitaEfMySql.Test", "test\CrudVitaEfMySql.Test\CrudVitaEfMySql.Test.csproj", "{668AC137-EE28-4BDC-A48C-D961E260227E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{BB9CA284-5E85-4E58-B71A-E0B676E48DDF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,12 +21,17 @@ Global
 		{CFDD5456-71BD-4993-96E9-21197581254D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFDD5456-71BD-4993-96E9-21197581254D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFDD5456-71BD-4993-96E9-21197581254D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{668AC137-EE28-4BDC-A48C-D961E260227E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{668AC137-EE28-4BDC-A48C-D961E260227E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{668AC137-EE28-4BDC-A48C-D961E260227E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{668AC137-EE28-4BDC-A48C-D961E260227E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{CFDD5456-71BD-4993-96E9-21197581254D} = {226A2388-32C5-4DAC-BD3A-90598F4CE71C}
+		{668AC137-EE28-4BDC-A48C-D961E260227E} = {BB9CA284-5E85-4E58-B71A-E0B676E48DDF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {14A94E46-0089-4DB4-9BCB-FD1161B99C61}

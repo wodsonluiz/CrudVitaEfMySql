@@ -75,7 +75,7 @@ namespace CrudVitaEfMySql.Service
             }
             catch (Exception ex)
             {
-                return new ResponseOperation() { Msg = ex.Message, Result = ResultEnum.Success };
+                return new ResponseOperation() { Msg = ex.Message, Result = ResultEnum.Fail };
             }
         }
 

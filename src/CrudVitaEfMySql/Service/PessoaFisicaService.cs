@@ -66,7 +66,7 @@ public class PessoaFisicaService : IPessoaFisica
         }
         catch (Exception ex)
         {
-            return new ResponseOperation() { Msg = ex.Message, Result = ResultEnum.Success };
+            return new ResponseOperation() { Msg = ex.Message, Result = ResultEnum.Fail };
         }
     }
     public async Task<IEnumerable> List()
