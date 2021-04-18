@@ -20,11 +20,11 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build ./src/CrudVitaEfMySql/CrudVitaEfMySql.csproj --no-restore
     - uses: actions/upload-artifact@master
       with:
         name: webpack artifacts
-        path: public/
+        path: src/CrudVitaEfMySql
         
   test:
     runs-on: ubuntu-latest
@@ -35,4 +35,4 @@ jobs:
       - uses: actions/download-artifact@master
         with:
           name: webpack artifacts
-          path: public/
+          path: src/CrudVitaEfMySql
