@@ -34,3 +34,6 @@ dotnet test
 ```
 ![Screenshot_3](https://user-images.githubusercontent.com/13908258/115157767-64e60480-a061-11eb-8e3e-2c83e894f7d6.png)
 
+## Deploy to release
+use pipeline in [GitHub Actions](https://github.com/wodsonluiz/CrudVitaEfMySql/actions)
+
