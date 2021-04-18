@@ -1,6 +1,6 @@
 # CrudVitaEfMySql 
 
-## Requisitos
+## Requirements
 ##### Install [dotnet 3.1.*](https://dotnet.microsoft.com/download/dotnet/3.1) 
 ##### Install [dotnet-ef](https://docs.microsoft.com/pt-br/ef/core/get-started/overview/install) 
 ##### Install [Docker](https://docs.docker.com/get-docker/) 
