@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace CrudProjectVita.Models
 {
@@ -6,37 +7,17 @@ namespace CrudProjectVita.Models
     {
         public PessoaFisica()
         {
-            
-        }
-        public PessoaFisica(string cpf, 
-            DateTime dataNascimento, 
-            string nome, 
-            string sobreNome, 
-            string cep, 
-            string logradouro, 
-            string numero, 
-            string complemento, 
-            string bairro, 
-            string cidade, 
-            string uf
-            )
-        {
-            Cpf = cpf;
-            DataNascimento = dataNascimento;
-            Nome = nome;
-            SobreNome = sobreNome;
-            CEP = cep;
-            Logradouro = logradouro;
-            Numero = numero;
-            Complemento = complemento;
-            Bairro = bairro;
-            Cidade = cidade;
-            Uf = uf;
+
         }
         public int PessoaFisicaId { get; set; }
-        public string Cpf {set; get;}
+
+        [Required(ErrorMessage = "Preencher CPF")]
+        public string Cpf { set; get; }
+        [Required(ErrorMessage = "Preencher Data Nascimento")]
         public DateTime DataNascimento { get; set; }
+        [Required(ErrorMessage = "Preencher Nome")]
         public string Nome { get; set; }
-        public string SobreNome  { get; set; }
+        [Required(ErrorMessage = "Preencher Sobrenome")]
+        public string SobreNome { get; set; }
     }
 }

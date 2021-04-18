@@ -42,7 +42,7 @@ namespace CrudVitaEfMySql.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PessoaJuridicaId,Cnpj,CompanyName,FantansyName,CEP,Logradouro,Numero,Complemento,Bairro,Cidade,Uf")] PessoaJuridica pessoaJuridica)
+        public async Task<IActionResult> Create([Bind("PessoaJuridicaId,Cnpj,RazaoSocial,NomeFantasia,CEP,Logradouro,Numero,Complemento,Bairro,Cidade,Uf")] PessoaJuridica pessoaJuridica)
         {
             if (ModelState.IsValid)
             {
